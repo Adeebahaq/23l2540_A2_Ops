@@ -4,3 +4,5 @@ __pycache__/
 *.pyc
 mlruns/
 .ipynb_checkpoints/
+/cnn_best.keras
+/tl_best.keras
