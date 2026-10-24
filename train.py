@@ -4,7 +4,7 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from tensorflow.keras import layers, models
 
-SMOKE = True          # True = 1 epoch per stage (quick test). Set False for the real run.
+SMOKE = False          # True = 1 epoch per stage (quick test). Set False for the real run.
 SEED = 42
 IMG, BS = 224, 32
 AUTOTUNE = tf.data.AUTOTUNE
