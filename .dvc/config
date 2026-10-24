@@ -1,4 +1,8 @@
 [core]
     remote = origin
+    analytics = false
 ['remote "origin"']
-    url = https://dagshub.com/Adeeba-haq/23l2540_A2_Ops.dvc
+    url = https://dagshub.com/Adeebahaq/23l2540_A2_Ops.dvc
+    jobs = 4
+    read_timeout = 600
+    connect_timeout = 120
