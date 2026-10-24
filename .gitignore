@@ -6,3 +6,11 @@ mlruns/
 .ipynb_checkpoints/
 /cnn_best.keras
 /tl_best.keras
+
+.env
+mlflow_toy.db
+mlruns/
+models/
+artifacts_tmp/
+best_tmp.keras
+model.keras
