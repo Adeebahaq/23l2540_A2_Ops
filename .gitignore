@@ -14,3 +14,5 @@ models/
 artifacts_tmp/
 best_tmp.keras
 model.keras
+
+models/
