@@ -9,12 +9,13 @@
       <p class="muted">{{ filename }}</p>
       <p class="verdict {{ 'ai' if res.label == 'AI-generated' else 'real' }}">{{ res.label }}</p>
       <p>Confidence: <strong>{{ '%.0f' % (res.confidence * 100) }}%</strong></p>
-      <div class="bar-bg"><div class="bar-fill" style="width: {{ res.confidence * 100 }}%"></div></div>
+      <progress class="conf" value="{{ '%.0f' % (res.confidence * 100) }}" max="100"></progress>
       <table class="kv">
         <tr><td>Probability AI-generated</td><td>{{ '%.3f' % res.p_ai }}</td></tr>
         <tr><td>Decision threshold</td><td>{{ '%.2f' % res.threshold }}</td></tr>
-        <tr><td>Model</td><td>{{ pr.model_name }} v{{ pr.version }} ({{ pr.run_name }})</td></tr>
-        <tr><td>Time taken</td><td>{{ '%.0f' % res.latency_ms }} ms</td></tr>
+        <tr><td>Model</td><td>{{ res.model_name }} v{{ res.model_version }} ({{ res.run_name }})</td></tr>
+        <tr><td>Served by</td><td>{{ 'Cloud API (Vercel)' if res.source == 'cloud-api' else 'Local model' }}</td></tr>
+        <tr><td>Total time</td><td>{{ '%.0f' % res.latency_ms }} ms{% if res.api_latency_ms %} (model compute {{ '%.0f' % res.api_latency_ms }} ms){% endif %}</td></tr>
       </table>
     </div>
   </div>

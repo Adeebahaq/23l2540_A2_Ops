@@ -7,7 +7,7 @@
   {% if rows %}
   <div class="scroll">
   <table class="grid">
-    <thead><tr><th>#</th><th>When (UTC)</th><th>File</th><th>Decision</th><th>P(AI)</th><th>Confidence</th><th>Threshold</th><th>Model</th></tr></thead>
+    <thead><tr><th>#</th><th>When (UTC)</th><th>File</th><th>Decision</th><th>P(AI)</th><th>Confidence</th><th>Threshold</th><th>Model</th><th>Served by</th><th>Time (ms)</th></tr></thead>
     <tbody>
     {% for r in rows %}
       <tr>
@@ -19,6 +19,8 @@
         <td>{{ '%.0f' % (r.confidence * 100) }}%</td>
         <td>{{ '%.2f' % r.threshold }}</td>
         <td>{{ r.model_name }} v{{ r.model_version }} ({{ r.run_name }})</td>
+        <td>{{ 'Cloud API' if r.source == 'cloud-api' else 'Local' }}</td>
+        <td>{{ '%.0f' % r.latency_ms }}</td>
       </tr>
     {% endfor %}
     </tbody>

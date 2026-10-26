@@ -20,4 +20,5 @@ class Prediction(db.Model):
     model_name = db.Column(db.String(100), nullable=False)
     model_version = db.Column(db.String(20), nullable=False)
     run_name = db.Column(db.String(100), nullable=False)
-    latency_ms = db.Column(db.Float, nullable=False)
+    latency_ms = db.Column(db.Float, nullable=False)          # end-to-end time seen by the Flask app
+    source = db.Column(db.String(20), nullable=False, default="local", server_default="local")
