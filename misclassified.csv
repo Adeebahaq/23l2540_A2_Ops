@@ -1,0 +1,11 @@
+path,class,label,sha256,prob,pred,conf
+data/raw/RealArt/RealArt/02-still-for-america-room-loop-superJumbo.jpg,RealArt,0,3e882440df690ecb66470c3c625b63c9dd73b3ecc9990c8502ae20adfc3b6c08,0.9266513,1,0.9266513
+data/raw/AiArtData/AiArtData/2A8oNV0baUgW9iGIEk1X.jpg,AiArtData,1,89ebadb7fe05fd302498c284de83047ace0761057a6206738a4c32eea6136d7f,0.09014943,0,0.9098506
+data/raw/AiArtData/AiArtData/240201-airec-main-ksp-5625e8.jpg,AiArtData,1,3c370cb8407219ad2199e541c43a4965ff62de074457610d69e961bc470c6c23,0.09955567,0,0.9004443
+data/raw/RealArt/RealArt/famous-paintings-fb.png,RealArt,0,03413aae97d21e8b1733c778ee690c3c55d5557b4206dcf0eae601e8a98d65e2,0.8829678,1,0.8829678
+data/raw/RealArt/RealArt/iy1ex3cookmf9cme5qlnxa.jpg,RealArt,0,5eaa7deebd028ed60cd4c52c8ac83ec6efd993602ddbdc886114e34cb6021679,0.86522573,1,0.86522573
+data/raw/AiArtData/AiArtData/ai-generated-8067660_1280.jpg,AiArtData,1,1c375068c613cb99cc14a2c270c0136fb393e0d3513f8f64f0db17079c442923,0.14323224,0,0.8567678
+data/raw/RealArt/RealArt/3-self-portraits-by-zanele-muholi.jpg,RealArt,0,57cd78c3be1875e877f68f9eee7f1a38431334668b912e34ef85fae229657a58,0.8464739,1,0.8464739
+data/raw/RealArt/RealArt/360_F_273227473_N0WRQuX3uZCJJxlHKYZF44uaJAkh2xLG.jpg,RealArt,0,0b095282ac97990e2e7ca5b331ded4846c84232f559b431111b6d30a01d76a7f,0.82996327,1,0.82996327
+data/raw/RealArt/RealArt/WBCSD-People-and-Society_i1140.jpg,RealArt,0,21d399b9828f5fe7e0f2ee09b80c7cc99f55a6c135afbd43d2198656fdc4ff66,0.82079506,1,0.82079506
+data/raw/AiArtData/AiArtData/Bu69yrI45ueNWQX84ap5.jpg,AiArtData,1,da06f4b05b69b7f08ff6709cc24288601c676c09d673abf1d709a57229032449,0.22208923,0,0.77791077

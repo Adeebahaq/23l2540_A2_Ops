@@ -1,0 +1,12 @@
+{
+  "model_name": "23L-2540_A2_Ops_VisionGuard",
+  "version": "2",
+  "run_name": "final_test",
+  "run_id": "590897bd6dba49168245d65f0deb2dc5",
+  "threshold": 0.27999999999999997,
+  "img_size": 224,
+  "label_map": {
+    "0": "Real",
+    "1": "AI-generated"
+  }
+}

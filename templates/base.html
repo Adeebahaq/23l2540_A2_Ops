@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}VisionGuard{% endblock %} · 23L-2540_A2_Ops</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header>
+    <div class="bar">
+      <a class="brand" href="{{ url_for('index') }}">VisionGuard</a>
+      <nav>
+        <a href="{{ url_for('index') }}">Upload</a>
+        <a href="{{ url_for('history') }}">History</a>
+        <a href="{{ url_for('health') }}">Health</a>
+      </nav>
+    </div>
+  </header>
+  <main>{% block content %}{% endblock %}</main>
+  <footer>23L-2540_A2_Ops · AI vs real image detection · results are estimates, not proof</footer>
+</body>
+</html>

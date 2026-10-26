@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="card">
+  <h1>Is this image AI-generated?</h1>
+  <p class="muted">Upload a JPG or PNG (up to {{ '%g' % max_mb }} MB). The image is analysed in memory and is not stored.</p>
+  <form id="f" method="post" action="{{ url_for('predict') }}" enctype="multipart/form-data">
+    <input id="file" type="file" name="image" accept=".jpg,.jpeg,.png,image/jpeg,image/png">
+    <img id="preview" alt="" hidden>
+    <button id="go" type="submit">Analyse image</button>
+  </form>
+</section>
+<script>
+  const file = document.getElementById('file'), prev = document.getElementById('preview');
+  file.addEventListener('change', () => {
+    if (file.files[0]) { prev.src = URL.createObjectURL(file.files[0]); prev.hidden = false; }
+  });
+  document.getElementById('f').addEventListener('submit', () => {
+    const b = document.getElementById('go'); b.disabled = true; b.textContent = 'Analysing…';
+  });
+</script>
+{% endblock %}

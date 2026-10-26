@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Result · VisionGuard{% endblock %}
+{% block content %}
+<section class="card">
+  <h1>Result</h1>
+  <div class="result">
+    <img src="{{ thumb }}" alt="uploaded image preview">
+    <div>
+      <p class="muted">{{ filename }}</p>
+      <p class="verdict {{ 'ai' if res.label == 'AI-generated' else 'real' }}">{{ res.label }}</p>
+      <p>Confidence: <strong>{{ '%.0f' % (res.confidence * 100) }}%</strong></p>
+      <div class="bar-bg"><div class="bar-fill" style="width: {{ res.confidence * 100 }}%"></div></div>
+      <table class="kv">
+        <tr><td>Probability AI-generated</td><td>{{ '%.3f' % res.p_ai }}</td></tr>
+        <tr><td>Decision threshold</td><td>{{ '%.2f' % res.threshold }}</td></tr>
+        <tr><td>Model</td><td>{{ pr.model_name }} v{{ pr.version }} ({{ pr.run_name }})</td></tr>
+        <tr><td>Time taken</td><td>{{ '%.0f' % res.latency_ms }} ms</td></tr>
+      </table>
+    </div>
+  </div>
+  <p class="caveat"><strong>Please note:</strong> VisionGuard gives a probability estimate, not proof. It can be wrong,
+    especially for digital art, paintings, heavily edited, screenshot or low-resolution images. Do not use it as the only basis for a serious decision.</p>
+  {% if not saved %}<p class="warn">This result could not be saved to the history.</p>{% endif %}
+  <a class="btn" href="{{ url_for('index') }}">Check another image</a>
+  <a class="btn ghost" href="{{ url_for('history') }}">View history</a>
+</section>
+{% endblock %}

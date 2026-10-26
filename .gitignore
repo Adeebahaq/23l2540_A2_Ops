@@ -16,3 +16,16 @@ best_tmp.keras
 model.keras
 
 models/
+
+api/inference.py
+api/models/
+
+*.keras
+*.db
+instance/
+tuner_toy/
+tuner_vg/
+test_files/
+*_log.txt
+artifacts_tmp/
+toy_loss.png

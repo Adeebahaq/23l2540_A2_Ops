@@ -16,21 +16,30 @@ augment = keras.Sequential([
 ], name="augmentation")
 
 
-def load_image(path, label):
-    raw = tf.io.read_file(path)                                        # 1. read bytes
-    img = tf.io.decode_image(raw, channels=3, expand_animations=False)  # 2. decode, force RGB
-    img = tf.image.resize(img, IMG_SIZE, antialias=True)                # 3. resize to a fixed size
-    img = tf.cast(img, tf.float32)                                      # values stay 0..255
-    return img, tf.cast(label, tf.float32)
+def _size(img_size):
+    return (img_size, img_size) if isinstance(img_size, int) else tuple(img_size)
 
 
-def make_dataset(csv_path, training, img_size=IMG_SIZE, batch=BATCH):
+def make_loader(img_size):
+    size = _size(img_size)
+
+    def load_image(path, label):
+        raw = tf.io.read_file(path)                                         # 1. read bytes
+        img = tf.io.decode_image(raw, channels=3, expand_animations=False)  # 2. decode, force RGB
+        img = tf.image.resize(img, size, antialias=True)                    # 3. resize to a fixed size
+        img = tf.cast(img, tf.float32)                                      # values stay 0..255
+        return img, tf.cast(label, tf.float32)
+
+    return load_image
+
+
+def make_dataset(csv_path, training, img_size=IMG_SIZE, batch=BATCH, use_aug=True):
     df = pd.read_csv(csv_path)
     ds = tf.data.Dataset.from_tensor_slices((df["path"].values, df["label"].values))
     if training:
         ds = ds.shuffle(len(df), seed=SEED, reshuffle_each_iteration=True)
-    ds = ds.map(load_image, num_parallel_calls=AUTOTUNE)
-    if training:
+    ds = ds.map(make_loader(img_size), num_parallel_calls=AUTOTUNE)
+    if training and use_aug:
         ds = ds.map(lambda x, y: (augment(x, training=True), y), num_parallel_calls=AUTOTUNE)
     return ds.batch(batch).prefetch(AUTOTUNE)
 

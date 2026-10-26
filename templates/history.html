@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}History · VisionGuard{% endblock %}
+{% block content %}
+<section class="card wide">
+  <h1>History</h1>
+  <p class="muted">{{ total }} analyses in total ({{ counts.get('AI-generated', 0) }} AI-generated, {{ counts.get('Real', 0) }} real). Showing the latest {{ limit }}.</p>
+  {% if rows %}
+  <div class="scroll">
+  <table class="grid">
+    <thead><tr><th>#</th><th>When (UTC)</th><th>File</th><th>Decision</th><th>P(AI)</th><th>Confidence</th><th>Threshold</th><th>Model</th></tr></thead>
+    <tbody>
+    {% for r in rows %}
+      <tr>
+        <td>{{ r.id }}</td>
+        <td>{{ r.created_at.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+        <td>{{ r.filename }}</td>
+        <td><span class="tag {{ 'ai' if r.label == 'AI-generated' else 'real' }}">{{ r.label }}</span></td>
+        <td>{{ '%.3f' % r.p_ai }}</td>
+        <td>{{ '%.0f' % (r.confidence * 100) }}%</td>
+        <td>{{ '%.2f' % r.threshold }}</td>
+        <td>{{ r.model_name }} v{{ r.model_version }} ({{ r.run_name }})</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  </div>
+  {% else %}
+  <p>No analyses yet. <a href="{{ url_for('index') }}">Upload an image</a> to get started.</p>
+  {% endif %}
+</section>
+{% endblock %}
