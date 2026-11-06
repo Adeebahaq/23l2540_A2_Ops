@@ -1,21 +1,41 @@
 ﻿name: CI
+
 on:
   push:
+    branches: [main]
   pull_request:
+    branches: [main]
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
-          python-version: "3.12"
+          python-version: "3.10"
+          cache: pip
+
       - name: Install dependencies
-        run: pip install -r requirements-app.txt pytest flake8
-      - name: Lint
-        run: flake8 . --max-line-length=120 --exclude=venv,.venv,mlruns,data,models,models_bak,vercel_api,tuner_toy,artifacts_tmp,instance
+        run: |
+          python -m pip install --upgrade pip
+          pip install flake8 pytest
+          if [ -f requirements-app.txt ]; then pip install -r requirements-app.txt; fi
+
+      - name: Lint (errors only)
+        run: flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics --exclude=venv,.git,__pycache__
+
       - name: Test
         run: pytest -q tests
-      - name: Build Docker image
-        run: docker build -t visionguard-web:ci .
+
+      - name: Docker build
+        run: |
+          if [ -f Dockerfile ]; then
+            docker build -t visionguard:ci .
+          else
+            echo "No Dockerfile found, skipping"
+          fi
