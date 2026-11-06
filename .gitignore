@@ -29,3 +29,5 @@ test_files/
 *_log.txt
 artifacts_tmp/
 toy_loss.png
+.vercel
+.env*
